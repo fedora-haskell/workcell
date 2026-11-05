@@ -5,7 +5,7 @@
 %bcond tests 0
 
 Name:           workcell
-Version:        0.1.0
+Version:        0.1.1
 Release:        1%{?dist}
 Summary:        Linux tool and project isolation using bubblewrap
 
@@ -63,7 +63,7 @@ set noclobber
 mkdir -p %{buildroot}%{bash_completions_dir}
 mkdir -p %{buildroot}%{fish_completions_dir}
 mkdir -p %{buildroot}%{zsh_completions_dir}
-%{buildroot}%{_bindir}/%{name} --bash-completion-script %{name} > %{buildroot}%{bash_completions_dir}/%{name}
+%{buildroot}%{_bindir}/%{name} --bash-completion-script %{name} | sed s/filenames/default/ > %{buildroot}%{bash_completions_dir}/%{name}
 %{buildroot}%{_bindir}/%{name} --fish-completion-script %{name} > %{buildroot}%{fish_completions_dir}/%{name}
 %{buildroot}%{_bindir}/%{name} --zsh-completion-script %{name} > %{buildroot}%{zsh_completions_dir}/_%{name}
 
@@ -92,5 +92,8 @@ PATH=%{buildroot}%{_bindir}:$PATH
 
 
 %changelog
+* Thu Nov 05 2026 Jens Petersen <petersen@redhat.com> - 0.1.1-1
+- https://hackage.haskell.org/package/workcell-0.1.1/candidate/changelog
+
 * Fri Oct 30 2026 Jens Petersen <juhpetersen@gmail.com> - 0.1.0-1
 - initial package
